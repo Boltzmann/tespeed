@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python2.7
 #
 # Copyright 2012-2013 Janis Jansons (janis.jansons@janhouse.lv)
 #
@@ -103,6 +103,7 @@ class TeSpeed:
         self.suppress=suppress
         if store:
             print_debug("Printing CSV formated results to STDOUT.\n")
+            sys.stdout = open('stdout_tespeed_log.csv','a')
         self.numTop=int(numTop)
         #~ self.downList=['350x350', '500x500', '750x750', '1000x1000',
             #~ '1500x1500', '2000x2000', '2000x2000', '2500x2500', '3000x3000',
@@ -586,7 +587,7 @@ class TeSpeed:
         self.TestDownload()
         self.TestUpload()
 
-        print_result("%0.2f,%0.2f,\"%s\",\"%s\"\n" % (self.down_speed, self.up_speed, self.units, self.servers))
+        print_result(time.strftime("%Y%m%d%H%M,") + "%0.2f,%0.2f,\"%s\",\"%s\"\n" % (self.down_speed, self.up_speed, self.units, self.servers))
 
     def ListServers(self, num=0):
         
